@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JJ Tours & Travel</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="./Style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<div class="container">
+
+<a class="navbar-brand" href="#">
+JJ Tours & Travel
+</a>
+
+<button class="navbar-toggler"
+data-bs-toggle="collapse"
+data-bs-target="#menu">
+☰
+</button>
+
+<div class="collapse navbar-collapse" id="menu">
+
+<ul class="navbar-nav ms-auto">
+
+<!-- INICIO -->
+<li class="nav-item">
+<a class="nav-link"
+href="#"
+data-bs-toggle="modal"
+data-bs-target="#registroModal">
+Registro
+</a>
+</li>
+
+<!-- SERVICIOS -->
+<li class="nav-item dropdown">
+
+<a class="nav-link dropdown-toggle"
+data-bs-toggle="dropdown"
+onclick="mostrarBuscadorServicios()">
+Servicios
+</a>
+
+<ul class="dropdown-menu">
+<li><a class="dropdown-item" href="#">Vuelos</a></li>
+<li><a class="dropdown-item" href="#">Hoteles</a></li>
+<li><a class="dropdown-item" href="#">Eventos</a></li>
+</ul>
+
+</li>
+
+<!-- OFERTAS -->
+<li class="nav-item">
+<a class="nav-link" href="#ofertas">
+Ofertas
+</a>
+</li>
+
+<!-- CONTACTO -->
+<li class="nav-item">
+<a class="nav-link"
+href="#"
+data-bs-toggle="modal"
+data-bs-target="#contactoModal">
+Contacto
+</a>
+</li>
+
+<!-- LOGIN -->
+<li class="nav-item">
+<a class="nav-link"
+href="#"
+data-bs-toggle="modal"
+data-bs-target="#loginModal">
+👤 Usuario
+</a>
+</li>
+
+</ul>
+</div>
+</div>
+</nav>
+
+<!-- BUSCADOR SERVICIOS -->
+<div class="container buscador-servicios"
+id="buscadorServicios">
+
+<div class="card shadow p-4 position-relative">
+
+<!-- BOTON CERRAR -->
+<button class="btn-close position-absolute top-0 end-0 m-3"
+onclick="cerrarBuscador()">
+</button>
+
+<div class="mb-3 text-center">
+
+<button class="btn btn-main"
+onclick="mostrarVuelos()">
+✈ Vuelos
+</button>
+
+<button class="btn btn-secondary"
+onclick="mostrarHoteles()">
+🏨 Hoteles
+</button>
+
+</div>
+
+<!-- VUELOS -->
+<div id="formVuelos">
+
+<div class="row g-2">
+
+<div class="col-md-3">
+<input class="form-control" placeholder="Desde">
+</div>
+
+<div class="col-md-3">
+<input class="form-control" placeholder="Hasta">
+</div>
+
+<div class="col-md-2">
+<input type="date" class="form-control">
+</div>
+
+<div class="col-md-2">
+<input type="date" class="form-control">
+</div>
+
+<div class="col-md-2">
+
+<select class="form-select">
+<option>Ida y vuelta</option>
+<option>Solo ida</option>
+</select>
+
+</div>
+</div>
+
+<div class="row mt-2">
+
+<div class="col-md-4">
+<label>Adultos</label>
+
+<input type="number"
+class="form-control"
+min="1"
+value="1">
+</div>
+
+<div class="col-md-4">
+<label>Niños</label>
+
+<input type="number"
+class="form-control"
+min="0"
+value="0"
+onchange="crearEdades(this.value,'edadesVuelo')">
+</div>
+
+<div id="edadesVuelo"></div>
+
+</div>
+
+<button class="btn btn-main mt-3 w-100">
+Buscar vuelos
+</button>
+
+</div>
+
+<!-- HOTELES -->
+<div id="formHoteles" style="display:none;">
+
+<div class="row g-2">
+
+<div class="col-md-4">
+<input class="form-control" placeholder="País o zona">
+</div>
+
+<div class="col-md-3">
+<input type="date" class="form-control">
+</div>
+
+<div class="col-md-3">
+<input type="date" class="form-control">
+</div>
+
+<div class="col-md-2">
+<input type="number"
+class="form-control"
+placeholder="Noches">
+</div>
+
+</div>
+
+<div class="row mt-2">
+
+<div class="col-md-4">
+<label>Adultos</label>
+
+<input type="number"
+class="form-control"
+min="1"
+value="1">
+</div>
+
+<div class="col-md-4">
+<label>Niños</label>
+
+<input type="number"
+class="form-control"
+min="0"
+value="0"
+onchange="crearEdades(this.value,'edadesHotel')">
+</div>
+
+<div id="edadesHotel"></div>
+
+</div>
+
+<button class="btn btn-main mt-3 w-100">
+Buscar hoteles
+</button>
+
+</div>
+</div>
+</div>
+
+<!-- SLIDER -->
+<div id="slider"
+class="carousel slide carousel-fade"
+data-bs-ride="carousel"
+data-bs-interval="4000">
+
+<div class="carousel-inner">
+
+<!-- SLIDE 1 -->
+<div class="carousel-item active">
+
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80"
+class="slider-img">
+
+<div class="carousel-caption">
+
+<h1 class="animate-text">
+Playas del Caribe
+</h1>
+
+<p class="animate-text">
+Relájate en el paraíso
+</p>
+
+</div>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="carousel-item">
+
+<img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1920&q=80"
+class="slider-img">
+
+<div class="carousel-caption">
+
+<h1 class="animate-text">
+Europa
+</h1>
+
+<p class="animate-text">
+Descubre ciudades mágicas
+</p>
+
+</div>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="carousel-item">
+
+<img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1920&q=80"
+class="slider-img">
+
+<div class="carousel-caption">
+
+<h1 class="animate-text">
+Dubai - Hotel 7★
+</h1>
+
+<p class="animate-text">
+Lujo en el Burj Al Arab
+</p>
+
+</div>
+</div>
+
+</div>
+
+<button class="carousel-control-prev"
+data-bs-target="#slider"
+data-bs-slide="prev">
+
+<span class="carousel-control-prev-icon"></span>
+
+</button>
+
+<button class="carousel-control-next"
+data-bs-target="#slider"
+data-bs-slide="next">
+
+<span class="carousel-control-next-icon"></span>
+
+</button>
+
+</div>
+
+
+
+<!-- MENSAJE -->
+<div id="mensaje"></div>
+
+<!-- OFERTAS -->
+<section id="ofertas"
+class="container ofertas mt-5">
+
+<h2 class="text-center mb-4">
+Ofertas Destacadas
+</h2>
+
+<div class="row">
+
+<!-- PUNTA CANA -->
+<div class="col-md-4">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80">
+
+<div class="card-body">
+
+<h5>Punta Cana</h5>
+<p>$499</p>
+
+<button class="btn btn-main"
+onclick="reservar('Punta Cana')">
+Reservar
+</button>
+
+</div>
+</div>
+</div>
+
+<!-- PARIS -->
+<div class="col-md-4">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80">
+
+<div class="card-body">
+
+<h5>París</h5>
+<p>$899</p>
+
+<button class="btn btn-main"
+onclick="reservar('París')">
+Reservar
+</button>
+
+</div>
+</div>
+</div>
+
+<!-- DUBAI -->
+<div class="col-md-4">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=800&q=80">
+
+<div class="card-body">
+
+<h5>Dubai</h5>
+<p>$1200</p>
+
+<button class="btn btn-main"
+onclick="reservar('Dubai')">
+Reservar
+</button>
+
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- DESTINOS -->
+<section class="destinos mt-5">
+
+<div class="container-fluid p-0">
+
+<div class="row g-0">
+
+<div class="col-md-2">
+<div class="destino-card">
+<img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=800&q=80">
+<div class="overlay">Sudamérica</div>
+</div>
+</div>
+
+<div class="col-md-2">
+<div class="destino-card">
+<img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80">
+<div class="overlay">Europa</div>
+</div>
+</div>
+
+<div class="col-md-2">
+<div class="destino-card">
+<img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80">
+<div class="overlay">Asia</div>
+</div>
+</div>
+
+<div class="col-md-2">
+<div class="destino-card">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80">
+<div class="overlay">América</div>
+</div>
+</div>
+
+<div class="col-md-2">
+<div class="destino-card">
+<img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=800&q=80">
+<div class="overlay">África</div>
+</div>
+</div>
+
+<div class="col-md-2">
+<div class="destino-card">
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80">
+<div class="overlay">Caribe</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- SERVICIOS Y SUSCRIPCION -->
+<section class="servicios-extra">
+
+<div class="container">
+
+<div class="row">
+
+<!-- SERVICIOS -->
+<div class="col-md-7">
+
+<h3 class="titulo-servicios">
+⚙ Algunos de nuestros servicios
+</h3>
+
+<div class="row mt-4">
+
+<div class="col-md-6">
+
+<p><a href="#">Luna de miel</a></p>
+<p><a href="#">Paquetes turísticos</a></p>
+<p><a href="#">Servicio de Cruceros</a></p>
+<p><a href="#">Guía de turistas</a></p>
+<p><a href="#">Estudios y trabajo en el extranjero</a></p>
+
+</div>
+
+<div class="col-md-6">
+
+<p><a href="#">Wedding planner</a></p>
+<p><a href="#">Excursiones</a></p>
+<p><a href="#">Circuitos turísticos</a></p>
+<p><a href="#">Seguros de viaje</a></p>
+<p><a href="#">Transportación</a></p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- SUSCRIPCION -->
+<div class="col-md-5">
+
+<h3 class="titulo-servicios">
+✉ Suscríbete
+</h3>
+
+<p class="texto-suscripcion">
+Suscríbete y entérate de todas las ofertas
+</p>
+
+<input type="email"
+class="form-control input-suscripcion"
+placeholder="Tu correo">
+
+<button class="btn btn-suscribirme mt-3">
+SUSCRIBIRME
+</button>
+
+<div class="redes-sociales mt-4">
+
+<a href="#">
+<i class="bi bi-facebook"></i>
+</a>
+
+<a href="#">
+<i class="bi bi-instagram"></i>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<h5>NOSOTROS</h5>
+
+<p>
+Somos una agencia de viajes y organizador de eventos en Rep. Dom.
+</p>
+
+</div>
+
+<div class="col-md-4">
+
+<h5>Información</h5>
+
+<p>
+<a href="#" style="color:white;">
+Términos y condiciones
+</a>
+</p>
+
+</div>
+
+<div class="col-md-4">
+
+<h5>Contacto</h5>
+
+<p>
+Santo Domingo<br>
+Villa Marina, Sto. Dgo.
+</p>
+
+</div>
+
+</div>
+</div>
+
+</footer>
+
+<!-- WHATSAPP -->
+<div class="whatsapp" onclick="whatsapp()">
+💬
+</div>
+
+<!-- MODAL REGISTRO -->
+<div class="modal fade" id="registroModal" tabindex="-1">
+
+<div class="modal-dialog">
+
+<div class="modal-content">
+
+<div class="modal-header bg-dark text-white">
+
+<h5 class="modal-title">
+Registro de Usuario
+</h5>
+
+<button type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+<div class="modal-body">
+
+<div class="mb-3">
+<label>Nombre</label>
+
+<input type="text"
+id="registroNombre"
+class="form-control"
+placeholder="Ingrese su nombre">
+</div>
+
+<div class="mb-3">
+<label>Usuario</label>
+
+<input type="text"
+id="registroUsuario"
+class="form-control"
+placeholder="Ingrese usuario">
+</div>
+
+<div class="mb-3">
+<label>Correo Electrónico</label>
+
+<input type="email"
+id="registroCorreo"
+class="form-control"
+placeholder="Ingrese correo">
+</div>
+
+<div class="mb-3">
+<label>Contraseña</label>
+
+<input type="password"
+id="registroPassword"
+class="form-control"
+placeholder="Ingrese contraseña">
+</div>
+
+<button class="btn btn-primary w-100"
+onclick="registrarUsuario()">
+Registrarse
+</button>
+
+</div>
+</div>
+</div>
+</div>
+
+<!-- MODAL LOGIN -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+
+<div class="modal-dialog">
+
+<div class="modal-content">
+
+<div class="modal-header bg-dark text-white">
+
+<h5 class="modal-title">
+Iniciar Sesión
+</h5>
+
+<button type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+<div class="modal-body">
+
+<div class="mb-3">
+<label>Usuario</label>
+
+<input type="text"
+id="loginUsuario"
+class="form-control"
+placeholder="Ingrese usuario">
+</div>
+
+<div class="mb-3">
+<label>Contraseña</label>
+
+<input type="password"
+id="loginPassword"
+class="form-control"
+placeholder="Ingrese contraseña">
+</div>
+
+<button class="btn btn-success w-100"
+onclick="loginUsuario()">
+Entrar
+</button>
+
+</div>
+</div>
+</div>
+</div>
+
+<!-- MODAL CONTACTO CORREGIDO -->
+<div class="modal fade" id="contactoModal" tabindex="-1">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content contacto-modal">
+
+<div class="modal-header border-0">
+
+<h5 class="modal-title text-white">
+Contacto
+</h5>
+
+<button type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+<div class="modal-body text-center text-white">
+
+<h4 class="mb-3">
+JJ Tours & Travel
+</h4>
+
+<p class="mb-3 contacto-texto">
+📞 Tel. (809) 908-5659
+</p>
+
+<p class="mb-3 contacto-texto">
+📱 Cel. (829) 332-7773
+</p>
+
+<p class="mb-3 contacto-texto">
+✉ reservasjjtoursytravel@gmail.com
+</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<script src="Script.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
